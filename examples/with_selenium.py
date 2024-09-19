@@ -28,7 +28,6 @@ def move_mouse_smoothly(driver, movements: list[tuple[int, int]]):
 driver = webdriver.Chrome()
 
 try:
-    # Open example.com
     driver.get("https://oxylabs.io")
 
     # Wait for the page to load

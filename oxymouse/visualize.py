@@ -34,7 +34,6 @@ def visualize_mouse_movements(algorithm: str, fn: str) -> None:
     plt.xlabel("X")
     plt.ylabel("Y")
     plt.grid(True)
-    plt.savefig("mouse_movement_path_ghost.png")
     plt.show()
 
 
