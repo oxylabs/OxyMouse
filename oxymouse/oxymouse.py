@@ -1,7 +1,7 @@
-from oxymouse.mouse.base import MouseMovement
-from oxymouse.mouse.bezier_mouse.bezier_mouse import BezierMouse
-from oxymouse.mouse.gaussian_mouse.gaussian_mouse import GaussianMouse
-from oxymouse.mouse.perlin_mouse.perlin_mouse import PerlinMouse
+from oxymouse.algorithms.base import MouseMovement
+from oxymouse.algorithms.bezier_mouse.bezier_mouse import BezierMouse
+from oxymouse.algorithms.gaussian_mouse.gaussian_mouse import GaussianMouse
+from oxymouse.algorithms.perlin_mouse.perlin_mouse import PerlinMouse
 
 
 class OxyMouse:

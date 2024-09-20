@@ -4,7 +4,7 @@ from typing import Any
 import numpy as np
 from scipy.special import comb
 
-from oxymouse.mouse.base import MouseMovement
+from oxymouse.algorithms.base import MouseMovement
 
 
 class BezierMouse(MouseMovement):
@@ -45,7 +45,7 @@ class BezierMouse(MouseMovement):
         end_x: int,
         end_y: int,
         duration: float = 1.0,
-        complexity: int = 3,
+        complexity: int = 4,
         randomness: float = 1.0,
     ) -> list[tuple[int, int]]:
         """

@@ -4,6 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Tadas Gedgaudas <tadas.gedgaudas@oxylabs.io>"]
 readme = "README.md"
+packages = [{ include = "oxymouse" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -13,7 +14,7 @@ matplotlib = "~3.9.2"
 typer = "^0.12.5"
 
 [tool.poetry.dev-dependencies]
-ruff = "~0.6.5"
+ruff = "~0.6.6"
 pylint = "~3.2.7"
 mypy = "~1.11.2"
 
