@@ -3,7 +3,7 @@ import time
 
 from noise import pnoise2
 
-from oxymouse.mouse.base import MouseMovement
+from oxymouse.algorithms.base import MouseMovement
 
 
 class PerlinMouse(MouseMovement):
