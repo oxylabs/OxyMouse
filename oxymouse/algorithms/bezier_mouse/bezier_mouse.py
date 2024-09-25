@@ -39,7 +39,7 @@ class BezierMouse(MouseMovement):
         return list(zip(xvals.astype(int), yvals.astype(int)))
 
     @staticmethod
-    def generate_bezier_mouse_movements(
+    def generate_bezier_mouse_movements(  # pylint: disable=too-many-positional-arguments
         start_x: int,
         start_y: int,
         end_x: int,
