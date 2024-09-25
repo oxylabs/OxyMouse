@@ -7,13 +7,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
-from oxymouse.mouse.bezier_mouse.bezier_mouse import BezierMouse
+from oxymouse import OxyMouse
 
 
 def generate_random_movements() -> list[tuple[int, int]]:
-    # Mouse can be BezierMouse, PerlinMouse or GaussianMouse
-    bezier_mouse = BezierMouse()
-    movements = bezier_mouse.generate_coordinates()
+    mouse = OxyMouse(algorithm="perlin")
+    movements = mouse.generate_coordinates()
     return movements
 
 

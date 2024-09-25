@@ -7,13 +7,15 @@ from oxymouse.algorithms.perlin_mouse.perlin_mouse import PerlinMouse
 class OxyMouse:
     def __init__(self, algorithm: str) -> None:
         self.mouse: MouseMovement
-        if algorithm == "perlin":
-            self.mouse = PerlinMouse()
-        if algorithm == "bezier":
-            self.mouse = BezierMouse()
-        if algorithm == "gaussian":
-            self.mouse = GaussianMouse()
-        else:
+
+        mouses = {
+            "perlin": PerlinMouse(),
+            "bezier": BezierMouse(),
+            "gaussian": GaussianMouse()
+        }
+
+        self.mouse = mouses.get(algorithm)
+        if not self.mouse:
             raise ValueError("Invalid algorithm")
 
     def generate_coordinates(
