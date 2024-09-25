@@ -29,7 +29,7 @@ class GaussianMouse(MouseMovement):
         return (1 - t) ** 2 * p0 + 2 * (1 - t) * t * p1 + t**2 * p2
 
     @staticmethod
-    def generate_gaussian_mouse_movements(  # pylint: disable=too-many-locals
+    def generate_gaussian_mouse_movements(  # pylint: disable=too-many-locals, too-many-positional-arguments
         start_x: int,
         start_y: int,
         end_x: int,
