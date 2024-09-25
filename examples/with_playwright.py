@@ -3,13 +3,12 @@ import random
 
 from playwright.async_api import async_playwright
 
-from oxymouse.mouse.bezier_mouse.bezier_mouse import BezierMouse
+from oxylabs import OxyMouse
 
 
 async def generate_random_movements() -> list[tuple[int, int]]:
-    # Mouse can be BezierMouse, PerlinMouse or GaussianMouse
-    bezier_mouse = BezierMouse()
-    movements = bezier_mouse.generate_coordinates()
+    mouse = OxyMouse(algorithm="gaussian")
+    movements = mouse.generate_coordinates()
     return movements
 
 

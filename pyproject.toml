@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "oxymouse"
-version = "0.1.0"
-description = ""
+version = "1.1.0"
+description = "Oxymouse is a tool for generating synthetic mouse movements."
 authors = ["Tadas Gedgaudas <tadas.gedgaudas@oxylabs.io>"]
 readme = "README.md"
 packages = [{ include = "oxymouse" }]
