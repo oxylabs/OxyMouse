@@ -1,5 +1,4 @@
 import random
-from typing import Optional
 
 from noise import pnoise2
 
@@ -13,7 +12,7 @@ class PerlinMouse(MouseMovement):
         octaves: int = 6,
         persistence: float = 0.5,
         lacunarity: float = 2.0,
-        seed: Optional[int] = None,
+        seed: int | None = None,
         step_interval: float = 0.01,
     ) -> list[tuple[int, int]]:
         """

@@ -1,6 +1,5 @@
 import random
 from enum import Enum
-from typing import Optional
 
 import numpy as np
 from noise import pnoise2
@@ -21,7 +20,7 @@ class OxyMouse(MouseMovement):
         octaves: int = 6,
         persistence: float = 0.5,
         lacunarity: float = 2.0,
-        seed: Optional[int] = None,
+        seed: int | None = None,
         max_velocity: float = 10000.0,
         step_interval: float = 0.01,
     ) -> list[tuple[int, int]]:
