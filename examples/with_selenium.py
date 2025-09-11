@@ -18,9 +18,13 @@ def generate_random_movements() -> list[tuple[int, int]]:
 
 def move_mouse_smoothly(driver, movements: list[tuple[int, int]]):
     actions = ActionChains(driver)
-    for x, y in movements:
-        actions.move_by_offset(x, y)
-        actions.pause(random.uniform(0.001, 0.003))  # Add small random delays
+    prev_x, prev_y = movements[0]
+    for x, y in movements[1:]:
+        dx = x - prev_x
+        dy = y - prev_y
+        actions.move_by_offset(dx, dy)
+        actions.pause(random.uniform(0.0001, 0.0003))
+        prev_x, prev_y = x, y
     actions.perform()
 
 
