@@ -24,15 +24,17 @@ Repository = "https://github.com/oxylabs/OxyMouse"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pyhm = "~0.0.7"
-noise = "~1.2.2"
-matplotlib = "~3.9.2"
-typer = "^0.12.5"
+noise = "^1.2.2"
+typer = ">=0.12.5"
+scipy = "*"
+numpy = "*"
 
 [tool.poetry.dev-dependencies]
 ruff = "~0.6.7"
 pylint = "~3.3.1"
 mypy = "~1.11.2"
+matplotlib = "~3.9.2"
+pytest = "*"
 
 [tool.ruff.lint]
 select = [

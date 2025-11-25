@@ -1,5 +1,4 @@
 import random
-import time
 from enum import Enum
 
 import numpy as np
@@ -21,14 +20,16 @@ class OxyMouse(MouseMovement):
         octaves: int = 6,
         persistence: float = 0.5,
         lacunarity: float = 2.0,
-        seed: int = random.randint(0, 100000),
+        seed: int | None = None,
         max_velocity: float = 10000.0,
+        step_interval: float = 0.01,
     ) -> list[tuple[int, int]]:
         """
         Generate mouse movements with realistic acceleration patterns and corrective movements.
         """
+        if seed is None:
+            seed = random.randint(0, 100000)
         random.seed(seed)
-        start_time = time.time()
         coordinates = []
 
         phases = [
@@ -40,25 +41,32 @@ class OxyMouse(MouseMovement):
         ]
 
         last_x, last_y = 0, 0
-        last_time = start_time
         current_velocity = 0
-        phase_start_time = start_time
+
+        # Simulation time variables
+        sim_time = 0.0
+        last_time = 0.0
+        phase_start_time = 0.0
         current_phase_idx = 0
 
-        while time.time() - start_time < duration and current_phase_idx < len(phases):
-            current_time = time.time()
-            dt = current_time - last_time
+        while sim_time < duration and current_phase_idx < len(phases):
+            current_time = sim_time
+            dt = current_time - last_time if sim_time != 0 else step_interval  # Use step_interval for first iteration
             phase_elapsed = current_time - phase_start_time
 
             current_state, phase_duration = phases[current_phase_idx]
-            phase_progress = phase_elapsed / (phase_duration * duration)
+            phase_total_time = phase_duration * duration
+            phase_progress = phase_elapsed / phase_total_time if phase_total_time > 0 else 1.0
 
             if phase_progress >= 1.0:
                 current_phase_idx += 1
                 phase_start_time = current_time
+                # Skip further processing if phase index changed
+                last_time = current_time
+                sim_time += step_interval
                 continue
 
-            t = (current_time - start_time) / duration
+            t = current_time / duration
             x_noise = pnoise2(t * 3, seed, octaves=octaves, persistence=persistence, lacunarity=lacunarity)
             y_noise = pnoise2(t * 3, seed + 1, octaves=octaves, persistence=persistence, lacunarity=lacunarity)
 
@@ -97,7 +105,7 @@ class OxyMouse(MouseMovement):
 
             last_x, last_y = new_x, new_y
             last_time = current_time
-            time.sleep(0.01)
+            sim_time += step_interval
 
         return coordinates
 

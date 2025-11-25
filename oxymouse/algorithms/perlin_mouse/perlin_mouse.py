@@ -1,5 +1,4 @@
 import random
-import time
 
 from noise import pnoise2
 
@@ -13,35 +12,42 @@ class PerlinMouse(MouseMovement):
         octaves: int = 6,
         persistence: float = 0.5,
         lacunarity: float = 2.0,
-        seed: int = random.randint(0, 100000),
+        seed: int | None = None,
+        step_interval: float = 0.01,
     ) -> list[tuple[int, int]]:
         """
-        Generate mouse movements using Perlin noise.
+        Generate mouse movements using Perlin noise without sleeping.
 
         :param duration: Duration of the movement in seconds
         :param octaves: Number of octaves for the noise
         :param persistence: Persistence for the noise
         :param lacunarity: Lacunarity for the noise
         :param seed: Seed for reproducible results
+        :param step_interval: The step increment that simulates each "sleep" tick
+        :return: List of (x, y) positions
         """
-        start_time = time.time()
-        screen_width, screen_height = 1920, 1080
+        if seed is None:
+            seed = random.randint(0, 100000)
 
+        screen_width, screen_height = 1920, 1080
         coordinates = []
 
-        while time.time() - start_time < duration:
+        # Number of steps approximates how many times the while loop would have run
+        num_steps = int(duration / step_interval)
+
+        for step_idx in range(num_steps+1):
+            current_time = step_idx * step_interval
+
             # Generate noise values
-            t = (time.time() - start_time) / duration
+            t = current_time / duration
             x_noise = pnoise2(t, seed, octaves=octaves, persistence=persistence, lacunarity=lacunarity)
             y_noise = pnoise2(t, seed + 1, octaves=octaves, persistence=persistence, lacunarity=lacunarity)
 
             # Map noise to screen coordinates
             x = int((x_noise + 1) / 2 * screen_width)
             y = int((y_noise + 1) / 2 * screen_height)
-
             coordinates.append((x, y))
 
-            time.sleep(0.01)
         return coordinates
 
     @staticmethod
