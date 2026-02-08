@@ -27,9 +27,9 @@ python = "^3.10"
 pyhm = "~0.0.7"
 noise = "~1.2.2"
 matplotlib = "~3.9.2"
-typer = "^0.12.5"
+typer = ">=0.12.5,<0.16"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 ruff = "~0.6.7"
 pylint = "~3.3.1"
 mypy = "~1.11.2"
